@@ -1,0 +1,22 @@
+pragma solidity ^0.8.0;
+
+contract InteractionLogger {
+    struct Interaction {
+        uint256 timestamp;
+    }
+    
+    Interaction[] public interactions;
+    
+    function logInteraction() public {
+        interactions.push(Interaction(block.timestamp));
+    }
+    
+    function getInteraction(uint256 index) public view returns (uint256) {
+        require(index < interactions.length, "Invalid index");
+        return interactions[index].timestamp;
+    }
+    
+    function getTotalInteractions() public view returns (uint256) {
+        return interactions.length;
+    }
+}
